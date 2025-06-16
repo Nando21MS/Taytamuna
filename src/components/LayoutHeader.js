@@ -5,7 +5,7 @@ const LayoutHeader = ({ onNavigate, cartCount, user, onLogout }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo} onClick={() => onNavigate('home')}>
-        🌱 AgroRed
+        🌱 Taytamuna
       </div>
       <nav className={styles.navLinks}>
         <button onClick={() => onNavigate('home')}>Inicio</button>

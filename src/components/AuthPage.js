@@ -1,102 +1,41 @@
-// src/components/AuthPage.jsx
 import React, { useState } from 'react';
 import styles from './AuthPage.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
 const AuthPage = ({ onLogin }) => {
-  const [role, setRole] = useState('buyer');
-  const [isRegister, setIsRegister] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleChange = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const user = { ...form, role };
-    localStorage.setItem('user', JSON.stringify(user));
-    onLogin(user);
-  };
-
-  const handleSocialLogin = (provider) => {
-    const user = {
-      name: provider === 'google' ? 'Usuario Google' : 'Usuario Facebook',
-      email: provider === 'google' ? 'google@example.com' : 'facebook@example.com',
-      role,
-    };
-    localStorage.setItem('user', JSON.stringify(user));
-    onLogin(user);
+    onLogin(username.trim(), password.trim());
   };
 
   return (
     <div className={styles.authContainer}>
-      <div className={styles.card}>
-        <h2>{isRegister ? 'Regístrate' : 'Inicia sesión'}</h2>
-        <div className={styles.roleSelector}>
-          <label>
-            <input
-              type="radio"
-              value="buyer"
-              checked={role === 'buyer'}
-              onChange={() => setRole('buyer')}
-            /> Comprador
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="producer"
-              checked={role === 'producer'}
-              onChange={() => setRole('producer')}
-            /> Productor
-          </label>
-        </div>
-
+      <div className={styles.authBox}>
+        <h2>AgroConecta 🌿</h2>
+        <p>Inicia sesión como <strong>Productor</strong> o <strong>Comprador mayorista</strong></p>
         <form onSubmit={handleSubmit}>
-          {isRegister && (
-            <input
-              type="text"
-              name="name"
-              placeholder="Nombre completo"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-          )}
           <input
-            type="email"
-            name="email"
-            placeholder="Correo electrónico"
-            value={form.email}
-            onChange={handleChange}
+            type="text"
+            placeholder="Usuario"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <input
             type="password"
-            name="password"
             placeholder="Contraseña"
-            value={form.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit" className={styles.submitBtn}>
-            {isRegister ? 'Registrarse' : 'Iniciar sesión'}
-          </button>
+          <button type="submit">Ingresar</button>
         </form>
-
-        <div className={styles.socialButtons}>
-          <button onClick={() => handleSocialLogin('google')} className={`${styles.socialBtn} ${styles.google}`}>
-            <FontAwesomeIcon icon={faGoogle} /> Continuar con Google
-          </button>
+        <div className={styles.tips}>
+          <p>👉 <strong>Productor:</strong> productor1 / 123456</p>
+          <p>👉 <strong>Comprador:</strong> comprador1 / 789123</p>
         </div>
-
-        <p>
-          {isRegister ? '¿Ya tienes cuenta?' : '¿No tienes cuenta?'}{' '}
-          <button className={styles.toggle} onClick={() => setIsRegister(!isRegister)}>
-            {isRegister ? 'Inicia sesión' : 'Regístrate'}
-          </button>
-        </p>
       </div>
     </div>
   );

@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #2f855a;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.navLinks button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navLinks button:hover {
+  color: #e6ffe6;
+}
+
+.badge {
+  background-color: #ff5722;
+  border-radius: 999px;
+  color: white;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  margin-left: 6px;
+}

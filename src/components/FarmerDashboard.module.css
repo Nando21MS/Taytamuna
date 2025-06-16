@@ -1,0 +1,76 @@
+.dashboard {
+  padding: 2rem;
+}
+
+.header {
+  background-color: #fff3e0;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.header h2 {
+  color: #ef6c00;
+  margin-bottom: 1rem;
+}
+
+nav button {
+  margin: 0 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: #ffa726;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: #fb8c00;
+}
+
+.main {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+.form input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form button {
+  background-color: #ef6c00;
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: #e65100;
+}

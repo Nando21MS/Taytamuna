@@ -1,0 +1,46 @@
+.historyContainer {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2e7d32;
+}
+
+.empty {
+  color: #888;
+  text-align: center;
+}
+
+.orderList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.orderCard {
+  background-color: #f1f8e9;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.status {
+  font-weight: bold;
+  color: #ff6f00;
+}
+
+.productList {
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+
+.productItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}

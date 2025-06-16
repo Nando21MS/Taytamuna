@@ -1,40 +1,75 @@
 .dashboard {
-  padding: 2rem;
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.header {
+.sidebar {
+  width: 250px;
+  background: linear-gradient(to bottom, #4CAF50, #388E3C);
+  color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #e8f5e9;
-  padding: 1rem;
-  border-radius: 12px;
-  margin-bottom: 1rem;
+  justify-content: space-between; /* Esto empuja el logout al fondo */
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
 }
 
-.header h2 {
-  margin-bottom: 1rem;
-  color: #2e7d32;
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
 }
 
-nav button {
-  margin: 0 0.5rem;
-  padding: 0.6rem 1rem;
-  background-color: #66bb6a;
+.logout {
+  color: #ffdddd;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: none;
   border: none;
-  border-radius: 8px;
-  color: white;
+  padding: 12px 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-align: left;
+  transition: background 0.3s, transform 0.2s;
 }
 
-nav button:hover {
-  background-color: #388e3c;
+.logout:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
 }
 
-.main {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+.user {
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: left;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.nav button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.nav .active {
+  background-color: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+}
+
+.mainContent {
+  flex: 1;
+  background-color: #f7f7f7;
+  padding: 30px;
+  overflow-y: auto;
 }

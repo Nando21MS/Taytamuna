@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import WelcomePage from './components/WelcomePage';
 import AuthPage from './components/AuthPage';
+import Registro from './components/Registro';
 import BuyerDashboard from './components/BuyerDashboard';
 import FarmerDashboard from './components/FarmerDashboard';
 
 const App = () => {
   const [user, setUser] = useState(null); // null o { role: 'buyer' | 'farmer', username }
-  const [currentScreen, setCurrentScreen] = useState('welcome'); // welcome | auth | dashboard
+  const [currentScreen, setCurrentScreen] = useState('welcome'); // welcome | auth | registro | dashboard
 
   const handleLogin = (username, password) => {
     if (username === 'productor1' && password === '123456') {
@@ -25,14 +26,32 @@ const App = () => {
     setCurrentScreen('welcome');
   };
 
+  // Pantalla de bienvenida
   if (currentScreen === 'welcome') {
-    return <WelcomePage onNavigateToLogin={() => setCurrentScreen('auth')} />;
+    return (
+      <WelcomePage
+        onNavigate={(screen) => setCurrentScreen(screen)} // 'auth' o 'registro'
+      />
+    );
   }
 
+  // Pantalla de login
   if (!user && currentScreen === 'auth') {
-    return <AuthPage onLogin={handleLogin} />;
+    return (
+      <AuthPage
+        onLogin={handleLogin}
+      />
+    );
   }
 
+  // Pantalla de registro
+  if (!user && currentScreen === 'registro') {
+    return (
+      <Registro />
+    );
+  }
+
+  // Pantalla de dashboard después del login
   return (
     <>
       {user.role === 'buyer' ? (

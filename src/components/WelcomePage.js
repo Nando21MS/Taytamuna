@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './WelcomePage.module.css';
 import { FaSignInAlt, FaUserPlus, FaLeaf, FaBullseye, FaEye } from 'react-icons/fa';
 
-const WelcomePage = ({ onNavigateToLogin }) => {
+const WelcomePage = ({ onNavigate }) => {
   return (
     <div className={styles.page}>
       {/* NAVBAR */}
@@ -20,11 +20,11 @@ const WelcomePage = ({ onNavigateToLogin }) => {
 
       {/* BOTONES CON ICONOS */}
       <div className={styles.actions}>
-        <button className={styles.loginBtn} onClick={() => onNavigateToLogin('login')}>
+        <button className={styles.loginBtn} onClick={() => onNavigate('auth')}>
           <FaSignInAlt className={styles.icon} />
           Ya tengo cuenta, ingresar
         </button>
-        <button className={styles.registerBtn} onClick={() => onNavigateToLogin('register')}>
+        <button className={styles.registerBtn} onClick={() => onNavigate('registro')}>
           <FaUserPlus className={styles.icon} />
           Soy nuevo, registrarme
         </button>

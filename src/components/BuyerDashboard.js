@@ -21,6 +21,15 @@ const BuyerDashboard = ({ username, onLogout }) => {
     });
   };
 
+  const handleUpdateQuantity = (productId, newQuantity) => {
+    if (newQuantity < 1) return; // Evita cantidades menores a 1
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
   const handleRemoveFromCart = (productId) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
   };
@@ -43,6 +52,7 @@ const BuyerDashboard = ({ username, onLogout }) => {
             cartItems={cartItems}
             onRemoveFromCart={handleRemoveFromCart}
             onCheckout={handleCheckout}
+            onUpdateQuantity={handleUpdateQuantity}
           />
         );
       default:

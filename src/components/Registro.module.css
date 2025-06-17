@@ -1,0 +1,118 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #e6f4ea, #ffffff);
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.box {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  transition: all 0.3s ease;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #047857;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.button {
+  background-color: #10b981;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: #059669;
+  transform: scale(1.03);
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.icon {
+  color: #10b981;
+  font-size: 1.2rem;
+  min-width: 1.5rem;
+}
+
+.inputField,
+.selectField {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.6rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.inputField:focus,
+.selectField:focus {
+  border-color: #10b981;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.googleBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.googleBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem 1.2rem;
+  font-weight: 500;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.googleBtn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}

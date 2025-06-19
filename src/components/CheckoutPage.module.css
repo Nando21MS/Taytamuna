@@ -1,0 +1,91 @@
+.checkoutContainer {
+  padding: 2.5rem;
+  background: #ffffff;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.checkoutTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #22543d;
+  font-size: 1.8rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem;
+  font-size: 1rem;
+}
+
+.total {
+  font-size: 1.2rem;
+  text-align: right;
+  color: #2f855a;
+  font-weight: bold;
+}
+
+.inputField,
+.selectField {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  background-color: #f7fafc;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.backBtn {
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #e2e8f0;
+  color: #2d3748;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.confirmBtn {
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #38a169;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.confirmBtn:hover {
+  background: #2f855a;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

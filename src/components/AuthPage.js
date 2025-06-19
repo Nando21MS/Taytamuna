@@ -16,8 +16,8 @@ const AuthPage = ({ onLogin }) => {
     }
 
     const credentials = [
-      { user: 'productor1', pass: '123456' },
-      { user: 'comprador1', pass: '789123' }
+      { user: 'Fernando', pass: '123456' },
+      { user: 'Astrid', pass: '789123' }
     ];
 
     const match = credentials.find(c => c.user === username && c.pass === password);

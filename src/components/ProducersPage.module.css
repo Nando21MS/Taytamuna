@@ -1,46 +1,42 @@
 .container {
   padding: 3rem 2rem;
-  background: linear-gradient(to bottom, #f0fff4, #ffffff);
-  animation: fadeIn 0.5s ease-in-out;
+  background-color: #f4f6f9;
   border-radius: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1f2937;
   text-align: center;
-  font-size: 2.4rem;
-  color: #22543d;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
 }
 
 .subtitle {
+  font-size: 1rem;
   text-align: center;
-  font-size: 1.1rem;
-  color: #4a5568;
+  color: #6b7280;
   margin-bottom: 2.5rem;
 }
 
 .producersGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 .producerCard {
   background-color: #ffffff;
-  border-radius: 1.2rem;
-  padding: 1.8rem;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
-  border-left: 5px solid #38a169;
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  border-left: 5px solid #10b981;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
 }
 
 .producerCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
 }
 
 .cardHeader {
@@ -50,48 +46,31 @@
 .name {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #2f855a;
+  color: #10b981;
   display: flex;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .location {
-  font-size: 0.95rem;
-  color: #68d391;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  color: #4ade80;
   font-weight: 500;
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.95rem;
 }
 
 .description {
-  color: #4a5568;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
+  color: #4b5563;
+  margin: 1rem 0;
 }
 
 .badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: #48bb78;
+  background-color: #10b981;
   color: white;
   font-size: 0.75rem;
-  padding: 0.3rem 0.7rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 1rem;
-  font-weight: bold;
-}
-
-/* Animación */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  font-weight: 600;
+  display: inline-block;
 }

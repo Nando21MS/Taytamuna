@@ -1,7 +1,6 @@
 .productsContainer {
-  background: linear-gradient(to bottom right, #e6f4ea, #fef9f2);
-  padding: 2rem;
-  border-radius: 1rem;
+  background-color: #f4f6f9;
+  padding: 2rem 2.5rem;
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -9,7 +8,7 @@
   font-size: 2rem;
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #2d3748;
+  color: #1f2937;
 }
 
 .filters {
@@ -20,134 +19,145 @@
   flex-wrap: wrap;
 }
 
-.searchInput {
-  padding: 0.7rem 1.2rem;
-  border: 2px solid #cbd5e0;
-  border-radius: 0.7rem;
-  font-size: 1rem;
-  min-width: 220px;
-  transition: all 0.3s ease;
-  background-color: #f7fafc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
-  background-color: #ffffff;
-}
-
+.searchInput,
 .select {
   padding: 0.7rem 1.2rem;
-  border: 2px solid #cbd5e0;
-  border-radius: 0.7rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
   font-size: 1rem;
-  min-width: 220px;
+  background-color: #ffffff;
+  color: #1f2937;
   transition: all 0.3s ease;
-  background-color: #f7fafc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 20 20' fill='gray' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06-.02L10 10.586l3.71-3.37a.75.75 0 011.06 1.06l-4.24 3.84a.75.75 0 01-1.06 0l-4.24-3.84a.75.75 0 01-.02-1.06z' /%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
 }
 
+.searchInput:focus,
 .select:focus {
   outline: none;
-  border-color: #48bb78;
-  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3);
-  background-color: #ffffff;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
-
 
 .productGrid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
 
 .card {
   background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
   padding: 1rem;
-  border-radius: 0.8rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
 .image {
   width: 100%;
-  height: 140px;
+  height: 150px;
   object-fit: cover;
   border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .price {
-  font-weight: bold;
-  color: #38a169;
-  margin: 0.5rem 0;
+  font-weight: 600;
+  color: #10b981;
+  margin: 0.4rem 0;
+}
+
+.provider {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 0.8rem;
 }
 
 .addButton {
-  background-color: #4299e1;
+  background-color: #1f2937;
   color: white;
   border: none;
   padding: 0.6rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .addButton:hover {
-  background-color: #2b6cb0;
+  background-color: #111827;
 }
 
 .noResults {
   font-size: 1rem;
   text-align: center;
-  color: #718096;
+  color: #6b7280;
   grid-column: 1 / -1;
-}
-
-/**/
-
-.provider {
-  font-size: 0.9rem;
-  color: #718096;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
   gap: 0.5rem;
+  margin-top: 2rem;
 }
 
 .pageBtn {
   padding: 0.5rem 1rem;
-  background-color: #edf2f7;
-  border: 1px solid #cbd5e0;
   border-radius: 0.4rem;
+  border: 1px solid #d1d5db;
+  background-color: #e5e7eb;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .pageBtn:hover {
-  background-color: #e2e8f0;
+  background-color: #d1d5db;
 }
 
 .pageBtn.active {
-  background-color: #4299e1;
+  background-color: #10b981;
   color: white;
   font-weight: bold;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.closeBtn {
+  margin-top: 1rem;
+  background-color: #ef4444;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: #dc2626;
 }
 
 .modalOverlay {

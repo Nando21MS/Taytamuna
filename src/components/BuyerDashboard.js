@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReceiptPage from './ReceiptPage';
 import PurchaseHistoryPage from './PurchaseHistoryPage';
+import TrackingPage from './TrackingPage';
 
 const BuyerDashboard = ({ username, onLogout }) => {
   const [activePage, setActivePage] = useState('products');
@@ -68,12 +69,16 @@ const BuyerDashboard = ({ username, onLogout }) => {
                 buyer: buyerInfo,
                 items: cartItems,
                 total: cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+                status: buyerInfo.deliveryMethod === 'envio' ? 'Pendiente de envío' : 'Listo para recojo',
               };
               setPurchaseHistory([...purchaseHistory, newOrder]);
               setLastOrder(newOrder);
               setCartItems([]);
               setActivePage('receipt');
-              toast.success('¡Compra realizada con éxito!', { position: 'top-right' });
+              toast.success('✅ ¡Compra realizada con éxito!', {
+                position: 'top-right',
+                autoClose: 3000,
+              });
             }}
             onBack={() => setActivePage('cart')}
           />
@@ -84,10 +89,14 @@ const BuyerDashboard = ({ username, onLogout }) => {
             order={lastOrder}
             onBackToStore={() => setActivePage('products')}
             onGoToHistory={() => setActivePage('history')}
+            onGoToTracking={() => setActivePage('tracking')}
           />
         );
       case 'history':
         return <PurchaseHistoryPage history={purchaseHistory} />;
+      case 'tracking':
+        const deliveryOrders = purchaseHistory.filter(o => o.buyer.deliveryMethod === 'envio');
+        return ( <TrackingPage orders={deliveryOrders} onGoToHistory={() => setActivePage('history')} /> );
       default:
         return <ProductsPage onAddToCart={handleAddToCart} />;
     }
@@ -111,6 +120,9 @@ const BuyerDashboard = ({ username, onLogout }) => {
             </button>
             <button onClick={() => setActivePage('history')} className={activePage === 'history' ? styles.active : ''}>
               📜 Historial
+            </button>
+            <button onClick={() => setActivePage('tracking')} className={activePage === 'tracking' ? styles.active : ''}>
+              🚚 Seguimiento
             </button>
           </nav>
           <button onClick={onLogout} className={styles.logout}>🔓 Cerrar sesión</button>

@@ -18,8 +18,13 @@ const CheckoutPage = ({ cartItems, onConfirmPurchase, onBack }) => {
       toast.error('Por favor, completa todos los campos.', { position: 'top-right' });
       return;
     }
+    toast.success('✅ ¡Compra realizada con éxito!', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
     onConfirmPurchase(buyerInfo);
   };
+
 
   return (
     <div className={styles.checkoutContainer}>

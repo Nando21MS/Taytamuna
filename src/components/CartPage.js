@@ -2,9 +2,19 @@ import React from 'react';
 import styles from './CartPage.module.css';
 import { getProductImage } from '../utils/getProductImage';
 import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartPage = ({ cartItems, onRemoveFromCart, onCheckout, onUpdateQuantity }) => {
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleRemove = (id, name) => {
+    onRemoveFromCart(id);
+    toast.info(`${name} eliminado del carrito ❌`, {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  };
 
   return (
     <div className={styles.cartContainer}>
@@ -21,12 +31,19 @@ const CartPage = ({ cartItems, onRemoveFromCart, onCheckout, onUpdateQuantity })
                   <span className={styles.name}>{item.name}</span>
                   <span className={styles.price}>S/. {(item.price * item.quantity).toFixed(2)}</span>
                   <div className={styles.quantityControls}>
-                    <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)} disabled={item.quantity === 1}><FaMinus /></button>
+                    <button
+                      onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                      disabled={item.quantity === 1}
+                    >
+                      <FaMinus />
+                    </button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}><FaPlus /></button>
+                    <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}>
+                      <FaPlus />
+                    </button>
                   </div>
                 </div>
-                <button onClick={() => onRemoveFromCart(item.id)} className={styles.removeBtn}>
+                <button onClick={() => handleRemove(item.id, item.name)} className={styles.removeBtn}>
                   <FaTrash />
                 </button>
               </li>
@@ -36,6 +53,9 @@ const CartPage = ({ cartItems, onRemoveFromCart, onCheckout, onUpdateQuantity })
           <button className={styles.checkoutBtn} onClick={onCheckout}>Finalizar compra</button>
         </>
       )}
+
+      {/* Toast container para mostrar notificaciones */}
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };

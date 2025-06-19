@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styles from './ProductsPage.module.css';
 import { getProductImage } from '../utils/getProductImage';
+import { FaSearch, FaFilter, FaShoppingCart } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const allProducts = [
   { id: 1, name: 'Papa andina', category: 'tubérculos', price: 3.50, provider: 'Cooperativa Andina' },
@@ -9,14 +12,12 @@ const allProducts = [
   { id: 4, name: 'Fresa orgánica', category: 'frutas', price: 2.50, provider: 'EcoCampo Perú' },
   { id: 5, name: 'Mango kent', category: 'frutas', price: 3.20, provider: 'EcoCampo Perú' },
   { id: 6, name: 'Lentejas verdes', category: 'granos', price: 1.90, provider: 'Red Agro Rural' },
-  // Agrega más si lo deseas
 ];
 
 const ProductsPage = ({ onAddToCart }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('todos');
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const itemsPerPage = 4;
 
@@ -31,47 +32,61 @@ const ProductsPage = ({ onAddToCart }) => {
   const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-  const openProductModal = (product) => setSelectedProduct(product);
-  const closeProductModal = () => setSelectedProduct(null);
+  const handleAdd = (product) => {
+    onAddToCart(product);
+    toast.success(`${product.name} agregado al carrito 🛒`, {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  };
 
   return (
     <div className={styles.productsContainer}>
       <h2 className={styles.title}>🧺 Productos disponibles</h2>
 
-      {/* Buscador y filtros */}
+      {/* Filtros */}
       <div className={styles.filters}>
-        <input
-          type="text"
-          placeholder="Buscar producto..."
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-          className={styles.searchInput}
-        />
-        <select
-          value={selectedCategory}
-          onChange={e => setSelectedCategory(e.target.value)}
-          className={styles.select}
-        >
-          <option value="todos">Todas las categorías</option>
-          <option value="frutas">Frutas</option>
-          <option value="tubérculos">Tubérculos</option>
-          <option value="granos">Granos</option>
-        </select>
+        <div className={styles.searchWrapper}>
+          <FaSearch className={styles.icon} />
+          <input
+            type="text"
+            placeholder="Buscar producto..."
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            className={styles.searchInput}
+          />
+        </div>
+        <div className={styles.selectWrapper}>
+          <FaFilter className={styles.icon} />
+          <select
+            value={selectedCategory}
+            onChange={e => setSelectedCategory(e.target.value)}
+            className={styles.select}
+          >
+            <option value="todos">Todas las categorías</option>
+            <option value="frutas">Frutas</option>
+            <option value="tubérculos">Tubérculos</option>
+            <option value="granos">Granos</option>
+          </select>
+        </div>
       </div>
 
-      {/* Grid de productos */}
+      {/* Lista de productos */}
       <div className={styles.productGrid}>
         {currentProducts.length === 0 ? (
           <p className={styles.noResults}>No se encontraron productos.</p>
         ) : (
           currentProducts.map(product => (
-            <div key={product.id} className={styles.card} onClick={() => openProductModal(product)}>
+            <div key={product.id} className={styles.card}>
               <img src={getProductImage(product.name)} alt={product.name} className={styles.image} />
               <h3>{product.name}</h3>
               <p className={styles.price}>S/. {product.price.toFixed(2)}</p>
               <p className={styles.provider}>Proveedor: {product.provider}</p>
-              <button onClick={(e) => { e.stopPropagation(); onAddToCart(product); }} className={styles.addButton}>
-                🛒 Agregar al carrito
+              <button
+                onClick={() => handleAdd(product)}
+                className={styles.addButton}
+              >
+                <FaShoppingCart /> Agregar
               </button>
             </div>
           ))
@@ -91,22 +106,8 @@ const ProductsPage = ({ onAddToCart }) => {
         ))}
       </div>
 
-      {/* Modal de detalle */}
-      {selectedProduct && (
-        <div className={styles.modalOverlay} onClick={closeProductModal}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <img src={getProductImage(selectedProduct.name)} alt={selectedProduct.name} />
-            <h3>{selectedProduct.name}</h3>
-            <p><strong>Categoría:</strong> {selectedProduct.category}</p>
-            <p><strong>Precio:</strong> S/. {selectedProduct.price.toFixed(2)}</p>
-            <p><strong>Proveedor:</strong> {selectedProduct.provider}</p>
-            <button onClick={() => { onAddToCart(selectedProduct); closeProductModal(); }} className={styles.addButton}>
-              🛒 Agregar al carrito
-            </button>
-            <button onClick={closeProductModal} className={styles.closeBtn}>Cerrar</button>
-          </div>
-        </div>
-      )}
+      {/* Toast container para mostrar notificaciones */}
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };

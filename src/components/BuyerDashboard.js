@@ -3,10 +3,18 @@ import styles from './BuyerDashboard.module.css';
 import ProductsPage from './ProductsPage';
 import CartPage from './CartPage';
 import ProducersPage from './ProducersPage';
+import CheckoutPage from './CheckoutPage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ReceiptPage from './ReceiptPage';
+import PurchaseHistoryPage from './PurchaseHistoryPage';
 
 const BuyerDashboard = ({ username, onLogout }) => {
   const [activePage, setActivePage] = useState('products');
   const [cartItems, setCartItems] = useState([]);
+  const [purchaseHistory, setPurchaseHistory] = useState([]);
+  const [lastOrder, setLastOrder] = useState(null);
+
 
   const handleAddToCart = (product) => {
     setCartItems(prevItems => {
@@ -22,7 +30,7 @@ const BuyerDashboard = ({ username, onLogout }) => {
   };
 
   const handleUpdateQuantity = (productId, newQuantity) => {
-    if (newQuantity < 1) return; // Evita cantidades menores a 1
+    if (newQuantity < 1) return;
     setCartItems(prevItems =>
       prevItems.map(item =>
         item.id === productId ? { ...item, quantity: newQuantity } : item
@@ -32,12 +40,6 @@ const BuyerDashboard = ({ username, onLogout }) => {
 
   const handleRemoveFromCart = (productId) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
-  };
-
-  const handleCheckout = () => {
-    alert('¡Gracias por tu compra!');
-    setCartItems([]);
-    setActivePage('products');
   };
 
   const renderPage = () => {
@@ -51,42 +53,74 @@ const BuyerDashboard = ({ username, onLogout }) => {
           <CartPage
             cartItems={cartItems}
             onRemoveFromCart={handleRemoveFromCart}
-            onCheckout={handleCheckout}
+            onCheckout={() => setActivePage('checkout')}
             onUpdateQuantity={handleUpdateQuantity}
           />
         );
+      case 'checkout':
+        return (
+          <CheckoutPage
+            cartItems={cartItems}
+            onConfirmPurchase={(buyerInfo) => {
+              const newOrder = {
+                id: purchaseHistory.length + 1,
+                date: new Date().toLocaleDateString(),
+                buyer: buyerInfo,
+                items: cartItems,
+                total: cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+              };
+              setPurchaseHistory([...purchaseHistory, newOrder]);
+              setLastOrder(newOrder);
+              setCartItems([]);
+              setActivePage('receipt');
+              toast.success('¡Compra realizada con éxito!', { position: 'top-right' });
+            }}
+            onBack={() => setActivePage('cart')}
+          />
+        );
+      case 'receipt':
+        return (
+          <ReceiptPage
+            order={lastOrder}
+            onBackToStore={() => setActivePage('products')}
+            onGoToHistory={() => setActivePage('history')}
+          />
+        );
+      case 'history':
+        return <PurchaseHistoryPage history={purchaseHistory} />;
       default:
         return <ProductsPage onAddToCart={handleAddToCart} />;
     }
   };
 
   return (
-    <div className={styles.dashboard}>
-      <aside className={styles.sidebar}>
-        <div className={styles.user}>
-          <span>👤 {username}</span>
-        </div>
-        <nav className={styles.nav}>
-          <button onClick={() => setActivePage('products')} className={activePage === 'products' ? styles.active : ''}>
-            🧺 Productos
-          </button>
-          <button onClick={() => setActivePage('producers')} className={activePage === 'producers' ? styles.active : ''}>
-            👨‍🌾 Productores
-          </button>
-          <button onClick={() => setActivePage('cart')} className={activePage === 'cart' ? styles.active : ''}>
-            🛒 Carrito ({cartItems.length})
-          </button>
-        </nav>
-
-        {/* Botón de cerrar sesión al fondo */}
-        <button onClick={onLogout} className={styles.logout}>
-          🔓 Cerrar sesión
-        </button>
-      </aside>
-      <main className={styles.mainContent}>
-        {renderPage()}
-      </main>
-    </div>
+    <>
+      <div className={styles.dashboard}>
+        <aside className={styles.sidebar}>
+          <div className={styles.logo}>TAYTAMUNA</div>
+          <div className={styles.user}>👤 {username}</div>
+          <nav className={styles.nav}>
+            <button onClick={() => setActivePage('products')} className={activePage === 'products' ? styles.active : ''}>
+              🧺 Productos
+            </button>
+            <button onClick={() => setActivePage('producers')} className={activePage === 'producers' ? styles.active : ''}>
+              👨‍🌾 Productores
+            </button>
+            <button onClick={() => setActivePage('cart')} className={activePage === 'cart' ? styles.active : ''}>
+              🛒 Carrito ({cartItems.length})
+            </button>
+            <button onClick={() => setActivePage('history')} className={activePage === 'history' ? styles.active : ''}>
+              📜 Historial
+            </button>
+          </nav>
+          <button onClick={onLogout} className={styles.logout}>🔓 Cerrar sesión</button>
+        </aside>
+        <main className={styles.mainContent}>
+          {renderPage()}
+        </main>
+      </div>
+      <ToastContainer />
+    </>
   );
 };
 

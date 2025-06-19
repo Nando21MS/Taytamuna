@@ -10,10 +10,10 @@ const App = () => {
   const [currentScreen, setCurrentScreen] = useState('welcome'); // welcome | auth | registro | dashboard
 
   const handleLogin = (username, password) => {
-    if (username === 'productor1' && password === '123456') {
+    if (username === 'Fernando' && password === '123456') {
       setUser({ role: 'farmer', username });
       setCurrentScreen('dashboard');
-    } else if (username === 'comprador1' && password === '789123') {
+    } else if (username === 'Astrid' && password === '789123') {
       setUser({ role: 'buyer', username });
       setCurrentScreen('dashboard');
     } else {

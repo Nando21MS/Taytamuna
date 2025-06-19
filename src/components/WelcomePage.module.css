@@ -152,3 +152,51 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+.testimonialSection {
+  padding: 3rem 2rem;
+  background-color: #f1f8e9;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.testimonialCard {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  animation: slideInRight 0.6s ease-in-out;
+  transition: transform 0.5s ease;
+}
+
+.testimonialImage {
+  width: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #81c784;
+}
+
+.rating {
+  margin-top: 0.5rem;
+}
+
+.sliderArrow {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #4caf50;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.sliderArrow:hover {
+  transform: scale(1.1);
+}
